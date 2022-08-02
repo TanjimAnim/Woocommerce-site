@@ -1,45 +1,48 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import axios from "axios";
+import Products from "../src/components/products";
+import { Box, Text, Center } from "@chakra-ui/react";
+import Link from "next/link";
 
-export default function Home() {
+export default function Home({ data, catagoryData }) {
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>Acrowd Interview Test</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://acrowd.se">Acrowd!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Get started by reading the{' '}
-          <code className={styles.code}>README.md</code>{' '}file
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://github.com/Black-Pixel-AB/shop-interview" target="_blank" rel="noreferrer" className={styles.card}>
-            <h2>Instructions &rarr;</h2>
-            <p>Check out the instructions for the project!</p>
-          </a>
-
-
-          <a
-            href="https://www.figma.com/file/z7jZJGxVyjScHaNlVVlh6d/Shop-Interview?node-id=0%3A1"
-            target="_blank" 
-            rel="noreferrer"
-            className={styles.card}
-          >
-            <h2>Design &rarr;</h2>
-            <p>
-              The store is based on the attached design
-            </p>
-          </a>
-        </div>
-      </main>
+    <div id='home'>
+      <Box textAlign='center' marginTop='5px' marginBottom='6px'>
+        <Text fontSize='3xl' fontWeight={700}>
+          Shop
+        </Text>
+      </Box>
+      <Box textAlign='center' display='flex' justifyContent='center'>
+        {catagoryData.products.map((item) => {
+          return (
+            <Box key={item.id}>
+              {item.slug !== "uncategorized" && item.parent === 0 ? (
+                <>
+                  <Link href={`/shop/${item.slug}`}>
+                    <Text marginRight='10px' marginTop='10px' cursor='pointer'>
+                      {item.name}
+                    </Text>
+                  </Link>
+                </>
+              ) : (
+                <></>
+              )}
+            </Box>
+          );
+        })}
+      </Box>
+      <Center>
+        <Products data={data} />
+      </Center>
     </div>
-  )
+  );
+}
+
+export async function getStaticProps() {
+  const url1 = "http://localhost:3000/api/get-products";
+  const url2 = "http://localhost:3000/api/get-catagories";
+  const { data } = await axios.get(url1);
+  const { data: catagoryData } = await axios.get(url2);
+  return {
+    props: { data, catagoryData },
+  };
 }
