@@ -1,0 +1,30 @@
+table {
+  border-spacing: 0 1em;
+  margin-top: 40px;
+  width: 88%;
+  margin-inline-start: 92px;
+  border-collapse: separate !important;
+}
+
+table thead tr {
+  background-color: #f7f7f7;
+}
+
+table thead tr th {
+  padding: 1rem;
+  font-weight: 400;
+}
+
+table thead tr th:nth-child(3),
+table thead tr th:nth-child(4) {
+  text-align: left;
+}
+
+table tbody tr td:nth-child(2) {
+  font-weight: 700;
+}
+
+table thead tr th:nth-child(2) {
+  text-align: left;
+  padding: 0.6rem;
+}
