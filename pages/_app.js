@@ -1,4 +1,5 @@
 import "../styles/globals.css";
+import "../pages/cart/cart.css";
 import { ChakraProvider } from "@chakra-ui/react";
 import { ShoppingCartContextProvider } from "../context/CartContext";
 
