@@ -21,7 +21,6 @@ const SingleProduct = ({ product, categories }) => {
   const decrement = () => {
     setCount(count - 1);
   };
-
   return (
     <>
       <Box
@@ -117,7 +116,7 @@ const SingleProduct = ({ product, categories }) => {
                   <>
                     <Box
                       key={item.id}
-                      width={{ base: "84%", md: "45%", lg: "25%" }}
+                      width={{ base: "84%", md: "85%", lg: "100%" }}
                       marginLeft='10px'
                       marginRight='10px'
                       marginTop='5px'
