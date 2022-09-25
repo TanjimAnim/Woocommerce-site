@@ -27,16 +27,12 @@ const ShoppingCart = () => {
             return (
               <tr key={item.id}>
                 <td>
-                  <Image
-                    src={item.images[0].src}
-                    width='121px'
-                    height='118px'
-                  />
+                  <Image src={item.images[0].src} width='121px' height='118px' />
                 </td>
                 <td>{item.name}</td>
                 <td>&#36;{item.price}</td>
                 <td>
-                  <Box display='flex' border='solid 1px' width='60%'>
+                  <Box display='flex' border='solid 1px' width='108px'>
                     <Button
                       background='white'
                       borderRadius='0'
