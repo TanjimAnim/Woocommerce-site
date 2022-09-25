@@ -83,9 +83,7 @@ export async function getServerSideProps(context) {
   const lastCategorySlug = context.params.category
     ? context.params.category[context.params.category.length - 1]
     : null;
-  const categoryId =
-    categories.find((category) => category.slug === lastCategorySlug)?.id ??
-    null;
+  const categoryId = categories.find((category) => category.slug === lastCategorySlug)?.id ?? null;
 
   const { data: products } = await api.get("products", {
     category: categoryId,
