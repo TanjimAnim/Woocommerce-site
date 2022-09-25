@@ -20,8 +20,8 @@ function ShopCategory({ categories, products }) {
       </Box>
 
       <Box textAlign='center' display='flex' justifyContent='center'>
-        {data.list.map((item) => (
-          <Link href={item.href}>
+        {data.list.map((item, index) => (
+          <Link href={item.href} key={index}>
             <Text marginRight='10px' marginTop='10px' cursor='pointer'>
               {item.name}
             </Text>
@@ -38,41 +38,43 @@ function ShopCategory({ categories, products }) {
         marginTop='60px'
         paddingLeft={{ base: "75px", md: "100px", lg: "26px" }}
       >
-        {products.map((item) => (
-          <Box
-            key={item.id}
-            width={{ base: "84%", md: "45%", lg: "25%" }}
-            marginLeft='10px'
-            marginRight='10px'
-            marginTop='5px'
-            marginBottom='5px'
-          >
-            <Box>
-              <Image src={item.images[0].src} width='280px' />
-            </Box>
-            <Box>
-              <Link href={`/product/${item.slug}/${item.id}`}>
+        {products.map((item) => {
+          return (
+            <Box
+              key={item.id}
+              width={{ base: "84%", md: "45%", lg: "25%" }}
+              marginLeft='10px'
+              marginRight='10px'
+              marginTop='5px'
+              marginBottom='5px'
+            >
+              <Box>
+                <Image src={item.images[0].src} width='280px' />
+              </Box>
+              <Box>
+                <Link href={`/product/${item.slug}/${item.id}`}>
+                  <Text
+                    marginRight='10px'
+                    marginTop='10px'
+                    cursor='pointer'
+                    fontSize='16px'
+                    fontWeight='bold'
+                  >
+                    {item.name}
+                  </Text>
+                </Link>
+              </Box>
+              <Box>
                 <Text
-                  marginRight='10px'
-                  marginTop='10px'
-                  cursor='pointer'
-                  fontSize='16px'
-                  fontWeight='bold'
-                >
-                  {item.name}
-                </Text>
-              </Link>
+                  dangerouslySetInnerHTML={{
+                    __html: item.price_html,
+                  }}
+                  textDecoration='none'
+                />
+              </Box>
             </Box>
-            <Box>
-              <Text
-                dangerouslySetInnerHTML={{
-                  __html: item.price_html,
-                }}
-                textDecoration='none'
-              />
-            </Box>
-          </Box>
-        ))}
+          );
+        })}
       </Box>
     </div>
   );
