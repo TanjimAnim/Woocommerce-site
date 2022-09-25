@@ -1,12 +1,5 @@
 import { useState, useEffect } from "react";
-import {
-  Text,
-  Box,
-  FormControl,
-  FormLabel,
-  Input,
-  Flex,
-} from "@chakra-ui/react";
+import { Text, Box, FormControl, FormLabel, Input, Flex } from "@chakra-ui/react";
 import { useShoppingCartContext } from "../context/CartContext";
 import axios from "axios";
 
@@ -81,9 +74,7 @@ const Checkout = () => {
         },
       ],
     };
-    Array.from(document.querySelectorAll("input")).forEach(
-      (input) => (input.value = "")
-    );
+    Array.from(document.querySelectorAll("input")).forEach((input) => (input.value = ""));
     dispatch({
       type: "CLEAR_CART",
     });
@@ -188,19 +179,10 @@ const Checkout = () => {
                 <Text>Total</Text>
               </Box>
             </Box>
-            <Box
-              display='flex'
-              flexDirection='column'
-              justifyContent='space-between'
-            >
+            <Box display='flex' flexDirection='column' justifyContent='space-between'>
               {cartData.cart.map((item) => {
                 return (
-                  <Box
-                    key={item.id}
-                    display='flex'
-                    justifyContent='space-between'
-                    padding='1rem'
-                  >
+                  <Box key={item.id} display='flex' justifyContent='space-between' padding='1rem'>
                     <Box>
                       <Text>
                         {item.name} x {item.qty}
@@ -218,7 +200,7 @@ const Checkout = () => {
                 <Text fontWeight={700}>Total</Text>
               </Box>
               <Box padding='1rem'>
-                <Text fontWeight={700}>&#36;{totalPrice}</Text>
+                <Text fontWeight={700}>&#36;{totalPrice.toFixed(2)}</Text>
               </Box>
             </Box>
             <Box
